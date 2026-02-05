@@ -2,7 +2,8 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import io from 'socket.io-client';
 import './App.css';
 
-const socket = io('http://localhost:3001');
+// ✅ ВОТ ТВОЯ ССЫЛКА НА СЕРВЕР
+const socket = io('https://vibeconvoserver.onrender.com');
 
 const configuration = {
   iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
@@ -136,14 +137,11 @@ function App() {
         <div className="video-box local-video">
           <video ref={myVideoRef} autoPlay playsInline muted style={{ display: isVideoStopped ? 'none' : 'block' }} />
           {isVideoStopped && <p style={{fontSize: '1.5rem'}}>Камера выкл.</p>}
-          
-          {/* --- ИЗМЕНЕНИЕ ЗДЕСЬ --- */}
           {isStarted && (
             <span className="audio-status-badge">
               {isAudioMuted ? '🔇 Звук выкл.' : '🎤 Звук вкл.'}
             </span>
           )}
-          
           <span>Вы</span>
         </div>
       </div>
